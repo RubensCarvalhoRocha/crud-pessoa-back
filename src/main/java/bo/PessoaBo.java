@@ -1,6 +1,6 @@
 package bo;
 
-import excessoes.ExcessaoPessoaNotFound;
+import excessoes.ExcecaoPessoaNotFound;
 import model.Pessoa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,12 +28,12 @@ public class PessoaBo {
 
     public Pessoa findById(Long id){
         return pessoaRepository.findById(id)
-                .orElseThrow(() -> new ExcessaoPessoaNotFound(id)); // Lançando exceção personalizada
+                .orElseThrow(() -> new ExcecaoPessoaNotFound(id)); // Lançando exceção personalizada
     }
 
     public void delete(Long id){
         if (!pessoaRepository.existsById(id)) {
-            throw new ExcessaoPessoaNotFound(id);
+            throw new ExcecaoPessoaNotFound(id);
         }
         try {
             pessoaRepository.deleteById(id);
